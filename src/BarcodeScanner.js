@@ -18,7 +18,7 @@ const BarcodeScanner = () => {
   const [data, setData] = useState(null);
   const fetchData = (result) => {
       // Log the URL before fetching
-      const url = `http://localhost:3001/api/scrape?code=${result}`;
+      const url = `https://world.openfoodfacts.org/api/v3/product/${result}.json`;
       console.log("Fetching data from:", url);
       fetch(url)
         .then((response) => {
@@ -40,7 +40,7 @@ const BarcodeScanner = () => {
   return (
     <>
       <video ref={ref} />
-      {data ? <p>{data.data}</p> : <p>Scan your item...</p>}
+      {data ? <p>{data.product.product_name}</p> : <p>Scan your item...</p>}
     </>
   );
 };
