@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { useZxing } from "react-zxing";
+import './BarcodeScanner.css';
 
 const BarcodeScanner = () => {
   // Function to play the bleep sound
@@ -14,22 +15,42 @@ const BarcodeScanner = () => {
       oscillator.start();
       oscillator.stop(audioCtx.currentTime + 0.2); // Stop after 0.2 seconds
     };
-  const [result, setResult] = useState("");
+  // Function to fetch data from the API
+  const [data, setData] = useState(null);
+  const fetchData = (result) => {
+      // Log the URL before fetching
+      const url = `https://world.openfoodfacts.org/api/v3/product/${result}.json`;
+      console.log("Fetching data from:", url);
+      fetch(url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => setData(data))
+        .catch((error) => console.error('Fetch error:', error));
+    };
   const { ref } = useZxing({
     onDecodeResult(result) {
       playBleep()
-      setResult(result.getText());
+      fetchData(result.getText());
     },
   });
 
   return (
     <>
-      <video ref={ref} />
-      <p>
-        <span>Last result:</span>
-        <span>{result}</span>
-      </p>
-    </>
+      <div className="scanner-container">
+        <div className="scanner-line"></div>
+        <video ref={ref} className="scanner-video" alt="barcode-scanner"/>
+      </div>
+      {data ? 
+        <div>
+          <p>{data.product.product_name}</p>
+          <img src={data.product.image_front_thumb_url}/>
+        </div>: 
+        <p>Scan your item...</p>}
+      </>
   );
 };
 
