@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useZxing } from "react-zxing";
+import './BarcodeScanner.css';
 
 const BarcodeScanner = () => {
   // Function to play the bleep sound
@@ -39,9 +40,17 @@ const BarcodeScanner = () => {
 
   return (
     <>
-      <video ref={ref} />
-      {data ? <p>{data.product.product_name}</p> : <p>Scan your item...</p>}
-    </>
+      <div className="scanner-container">
+        <div className="scanner-line"></div>
+        <video ref={ref} className="scanner-video" alt="barcode-scanner"/>
+      </div>
+      {data ? 
+        <div>
+          <p>{data.product.product_name}</p>
+          <img src={data.product.image_front_thumb_url}/>
+        </div>: 
+        <p>Scan your item...</p>}
+      </>
   );
 };
 
