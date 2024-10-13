@@ -10,10 +10,6 @@ In the project directory, you can run:
 
 To install all dependencies when they are not installed already/
 
-### Start Node.js API
-
-Go into the react-scraping-example folder and run: `node server.js`.
-
 ### `npm start`
 
 Runs the app in the development mode.\
