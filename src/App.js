@@ -1,5 +1,5 @@
 import React from "react";
-import BarcodeScanner from "./BarcodeScanner"; 
+import BarcodeScanner from "./components/BarcodeScanner/BarcodeScanner";
 import './assets/css/minty-bootstrap.css';
 import { useAuth0 } from '@auth0/auth0-react';
 

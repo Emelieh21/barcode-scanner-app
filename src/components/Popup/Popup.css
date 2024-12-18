@@ -1,0 +1,109 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-inner {
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    max-width: 500px;
+    background-color: #FFF;
+}
+
+.popup-inner .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.image-text-container {
+    display: flex;
+    gap: 30px; /* Space between text and image */
+    margin-top: 24px;
+  }
+
+.text-container {
+    max-width: 320px;
+}
+
+.image-container {
+    width: 150px; /* Set image width */
+    height: auto; /* Maintain aspect ratio */
+    text-align: center;
+    margin-top: 18px;
+}
+
+.settings-container {
+    display: flex;
+    align-items: center;  /* Vertically align items */
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.action-buttons {
+    display: flex;            /* Use flexbox to align buttons horizontally */
+    justify-content: space-between; /* Align the buttons to opposite sides */
+    margin-top: 48px;         /* Add some space above the buttons */
+}
+
+.remove-btn {
+    background-color: #8B0000; /* Dark red background */
+    color: white;              /* White text */
+    border: none;              /* Remove default border */
+    padding: 10px 20px;        /* Add some padding inside the button */
+    font-size: 16px;           /* Set font size */
+    border-radius: 5px;        /* Rounded corners */
+    cursor: pointer;          /* Change cursor to pointer */
+}
+
+.add-btn {
+    background-color: #006400; /* Dark green background */
+    color: white;              /* White text */
+    border: none;              /* Remove default border */
+    padding: 10px 20px;        /* Add some padding inside the button */
+    font-size: 16px;           /* Set font size */
+    border-radius: 5px;        /* Rounded corners */
+    cursor: pointer;          /* Change cursor to pointer */
+}
+
+button:hover {
+    opacity: 0.9; /* Slightly fade buttons on hover */
+}
+
+button:active {
+    transform: scale(0.98); /* Slightly shrink buttons on click */
+}
+  
+.custom-select {
+    min-width: 200px; /* Adjust the width to whatever value you need */
+  }
