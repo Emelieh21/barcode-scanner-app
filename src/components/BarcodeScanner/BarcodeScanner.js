@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { useZxing } from "react-zxing";
-import { fetchData } from './utils/fetchData'; // Import the server-side fetchData function
-import { playBleep } from './utils/playBleep'; 
+import { fetchData } from '../../utils/fetchData'; // Import the server-side fetchData function
+import { playBleep } from '../../utils/playBleep';
+import Popup from '../Popup/Popup'; 
 import './BarcodeScanner.css';
 
 const BarcodeScanner = () => {
   const [data, setData] = useState(null);
+  const [timedPopup, setTimedPopup] = useState(false);
+
   const { ref } = useZxing({
     onDecodeResult: async (result) => { // Make this function async
       playBleep()
       const fetchedData = await fetchData(result.getText()); // Await the fetchData call
+      setTimedPopup(true);
       setData(fetchedData); // Set the fetched data
     },
   });
@@ -22,9 +26,8 @@ const BarcodeScanner = () => {
       </div>
       {data ? 
         <div>
-          <p>{data.product.product_name}</p>
-          <img src={data.product.image_front_thumb_url}/>
-        </div>: 
+          <Popup trigger={timedPopup} setTrigger={setTimedPopup} data={data}></Popup>
+        </div> : 
         <p>Scan your item...</p>}
       </>
   );
