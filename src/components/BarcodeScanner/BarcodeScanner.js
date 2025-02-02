@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useZxing } from "react-zxing";
-import { fetchData } from '../../utils/fetchData'; // Import the server-side fetchData function
+import { fetchProduct } from '../../utils/fetchData'; // Import the server-side fetchData function
 import { playBleep } from '../../utils/playBleep';
 import Popup from '../Popup/Popup'; 
 import './BarcodeScanner.css';
@@ -12,7 +12,7 @@ const BarcodeScanner = () => {
   const { ref } = useZxing({
     onDecodeResult: async (result) => { // Make this function async
       playBleep()
-      const fetchedData = await fetchData(result.getText()); // Await the fetchData call
+      const fetchedData = await fetchProduct(result.getText()); // Await the fetchData call
       setTimedPopup(true);
       setData(fetchedData); // Set the fetched data
     },
