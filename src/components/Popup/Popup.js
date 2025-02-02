@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Select from "react-select";
+import { BarcodeScannerContext } from "../../context/BarcodeScannerContext";
 
 import './Popup.css'
 
 function Popup(props) {
     const [quantity, setQuantity] = useState(1); // Start with a quantity of 1
+    const { options } = useContext(BarcodeScannerContext);
 
     const increaseQuantity = () => {
       setQuantity((prevQuantity) => prevQuantity + 1); // Increase the quantity by 1
@@ -15,11 +17,6 @@ function Popup(props) {
           setQuantity((prevQuantity) => prevQuantity - 1);
         }
     };
-
-    const options = [
-        { value: "spicySauces", label: "Spicy Sauces" },
-        { value: "kikkererwtjes", label: "Kikkererwtjes" },
-      ];
 
     return (props.trigger) ? (
         <div className="popup">   

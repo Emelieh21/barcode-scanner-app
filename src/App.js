@@ -2,6 +2,7 @@ import React from "react";
 import BarcodeScanner from "./components/BarcodeScanner/BarcodeScanner";
 import './assets/css/minty-bootstrap.css';
 import { useAuth0 } from '@auth0/auth0-react';
+import { BarcodeScannerProvider } from "./context/BarcodeScannerContext";
 
 const App = () => {
   const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
@@ -30,7 +31,9 @@ const App = () => {
       </nav>
       <main className="container mt-4">
         {isAuthenticated ? (
-          <BarcodeScanner />
+          <BarcodeScannerProvider>
+            <BarcodeScanner />
+          </BarcodeScannerProvider>
         ) : (
           <h2>Please login to start keeping track of your products</h2>
         )}
